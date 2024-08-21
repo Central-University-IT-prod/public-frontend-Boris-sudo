@@ -1,0 +1,16 @@
+<main id="achievements-level-up-main" class="main">
+  <div class="content">
+    <div class="image-container">
+      <img class="image-background" alt="background-image" src="/assets/achievement-images/background1.png">
+      <img class="image-background1" alt="background-image" src="/assets/achievement-images/background.png">
+      <img class="image" alt="achievement-img" [src]="'/assets/achievement-images/'+achievement.img_path">
+    </div>
+    <div class="text-content">
+      <h1 class="h1">Поздравляю!</h1>
+      <h1 class="h1">Ты достиг {{achievement.level}} уровня</h1>
+      <h1 class="h1">в {{achievement.title}}</h1>
+      <p class="p">Продолжай в том же духе и у тебя все получится!</p>
+      <button class="button" (click)="hide_main()">Продолжить</button>
+    </div>
+  </div>
+</main>

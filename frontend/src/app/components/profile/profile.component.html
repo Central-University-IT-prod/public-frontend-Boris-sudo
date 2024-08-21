@@ -1,0 +1,86 @@
+<main class="main">
+  <div class="content-block">
+
+    <div class="left-content">
+      <div id="image-block" class="image-block">
+        <img class="image" [src]="avatar.path" alt="Аватар">
+        <div class="image-edit-block">
+          <svg [style]="'fill:'+background.edit_color+';'" (click)="open_profile_image_chose_menu()" class="image-edit" xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+               viewBox="0 0 24 24">
+            <path
+              d="M14.257 4.793 1.555 17.496a.505.505 0 0 0-.132.232L.015 23.379A.503.503 0 0 0 .5 24c.04 0 .081-.005.121-.015l5.651-1.408a.5.5 0 0 0 .232-.132L19.207 9.743l-4.95-4.95zM22.354 3.061 20.94 1.647c-.945-.945-2.592-.944-3.536 0l-1.732 1.732 4.95 4.95 1.732-1.732c.472-.472.732-1.1.732-1.768 0-.668-.26-1.296-.732-1.768z"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="personal-info">
+        <p class="header">{{ username }}</p>
+        <p>Баланс: {{ profile.money }}$</p>
+      </div>
+
+      <div class="working-info block">
+        <p class="header">Статистика</p>
+        <div class="working-info-blocks">
+          <div [class.active]="profile.streak_days! > 0" class="working-info-block">
+            <svg xmlns="http://www.w3.org/2000/svg" class="svg fire" data-name="Layer 1" viewBox="0 0 21.5 21.5">
+              <path class="path-r" d="M14.47 3.54a.752.752 0 0 0-.63-.54c-.3-.04-.59.11-.74.37L9.52 9.63 6.2 7.14a.774.774 0 0 0-.72-.1c-.24.09-.42.3-.47.55l-.8 4.02c-.71 3.56 2.01 6.88 5.64 6.88h1.27c3.82 0 6.58-3.66 5.53-7.33l-2.18-7.63Z"/>
+              <path class="path-y" d="M12.96 11.51a.762.762 0 0 0-.61-.51.744.744 0 0 0-.72.33l-1.59 2.39-1.38-.89a.736.736 0 0 0-.69-.06c-.23.09-.39.29-.45.52l-.24 1.04c-.5 2.13 1.12 4.17 3.31 4.17 2.32 0 3.95-2.27 3.22-4.47l-.84-2.52Z"/>
+            </svg>
+            <div>
+              <p class="number">{{profile.streak_days}}</p>
+              <p class="text">Ударный режим</p>
+            </div>
+          </div>
+          <div [class.active]="profile.level! > 0" class="working-info-block">
+            <svg class="lightning svg" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24">
+              <path class="path" d="M19 9h-5.938l.934-7.882C13.999 1.099 14 1.02 14 1a.99.99 0 0 0-1-1c-.313 0-.613.149-.816.423L4.2 12.4c-.129.172-.2.385-.2.6 0 .561.439 1 1 1h4.944l-.941 8.897A1.77 1.77 0 0 0 9 23c0 .561.439 1 1 1 .313 0 .613-.149.811-.416L19.8 10.6c.129-.172.2-.385.2-.6a.99.99 0 0 0-1-1z"/>
+            </svg>
+            <div>
+              <p class="number">{{profile.level}}</p>
+              <p class="text">Очки опыта</p>
+            </div>
+          </div>
+          <div [class.active]="profile.habits_complete! > 0" class="working-info-block">
+            <svg class="flags svg" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24">
+              <g>
+                <path class="path-l" d="M16.135 5.858a.74.74 0 0 1 .272 1.018L9.902 17.99a.761.761 0 0 1-1.031.277.74.74 0 0 1-.273-1.019l6.506-11.114a.761.761 0 0 1 1.03-.276Z"/>
+                <path class="path-l" d="M7.865 5.858a.74.74 0 0 0-.272 1.018l6.505 11.114a.76.76 0 0 0 1.031.277.74.74 0 0 0 .273-1.019L8.896 6.134a.76.76 0 0 0-1.03-.276Z"/>
+                <path class="path-d" d="M19.37 8.59a3.157 3.157 0 0 0-2.202-1.675l-1.722-.347a.761.761 0 0 0-.807.36l-2.323 3.969a.74.74 0 0 0 .497 1.102l1.722.348c.504.102.932.427 1.16.883A5.166 5.166 0 0 0 19.3 15.97l.758.153a.761.761 0 0 0 .806-.36l2.324-3.969a.74.74 0 0 0-.497-1.102l-.758-.153a3.673 3.673 0 0 1-2.562-1.95ZM4.63 8.59a3.157 3.157 0 0 1 2.202-1.675l1.722-.347a.761.761 0 0 1 .807.36l2.323 3.969a.74.74 0 0 1-.497 1.102l-1.722.348a1.664 1.664 0 0 0-1.16.883A5.166 5.166 0 0 1 4.7 15.97l-.758.153a.761.761 0 0 1-.806-.36L.813 11.795a.74.74 0 0 1 .497-1.102l.758-.153A3.673 3.673 0 0 0 4.63 8.59Z"/>
+              </g>
+            </svg>
+            <div>
+              <p class="number">{{profile.habits_complete}}</p>
+              <p class="text">привычек завершено</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="working-info block">
+        <p class="header">Достижения</p>
+        <ul class="cards-container">
+          <li class="card" *ngFor="let ach of achievements">
+            <div [style]="'background:'+ach.color+';'" class="card-image-container">
+              <img class="card-image" [src]="'/assets/achievement-images/'+ach.img_path" alt="achievement image">
+              <p class="card-image-level">УРОВЕНЬ {{ach.level}}</p>
+            </div>
+            <div class="card-content">
+              <div class="card-content-title-block">
+                <p class="card-content-title">{{ach.title}}</p>
+                <p class="card-content-progress">{{ach.have_progress}}/{{ach.need_progress![ach.level!]}}</p>
+              </div>
+              <div>
+                <div class="card-progressbar__container">
+                  <div [style]="'width: calc(100% * '+(ach.have_progress/ach.need_progress[ach.level])+');'" class="yellow-line"></div>
+                  <div class="gray-line"></div>
+                </div>
+                <div class="card-about-text">{{ach.about_text}}</div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</main>

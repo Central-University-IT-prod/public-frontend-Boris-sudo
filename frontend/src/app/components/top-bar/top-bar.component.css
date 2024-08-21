@@ -1,0 +1,82 @@
+.main {
+  width:           100%;
+  height:          var(--top-bar-height);
+  display:         flex;
+  justify-content: center;
+  flex-direction:  row;
+  position:        relative;
+  padding:         10px 20px;
+}
+
+.content {
+  padding:         0 10px;
+  width:           100%;
+  border-radius:   10px;
+  max-width:       var(--max-window-width);
+  background:      rgba(var(--white));
+  color:           rgba(var(--black));
+  display:         flex;
+  flex-direction:  row;
+  justify-content: space-between;
+  align-items:     center;
+  align-content:   center;
+}
+
+.logo {
+  cursor:          pointer;
+  display:         flex;
+  flex-direction:  row;
+  align-items:     center;
+  align-content:   center;
+  justify-content: center;
+  grid-column-gap: 5px;
+  font-size:       20px;
+  font-weight:     900;
+  font-family:     var(--ff-ubuntu);
+}
+
+.menu-opener {
+  cursor: pointer;
+}
+
+.dark-background {
+  position:            fixed;
+  top:                 0;
+  left:                0;
+  bottom:              0;
+  right:               0;
+  z-index:             900;
+  background:          rgba(var(--black));
+  opacity:             0;
+  transition-duration: .5s;
+  display:             none;
+}
+
+.dark-background.opened {
+  opacity: .6;
+}
+
+.menu {
+  --menu-width:        min(100vw, var(--right-bar-menu-width));
+  position:            absolute;
+  width:               var(--menu-width);
+  height:              100vh;
+  top:                 0;
+  right:               calc(-1 * var(--menu-width));
+  display:             none;
+  flex-direction:      column;
+  transition-duration: .5s;
+  z-index:             901;
+}
+
+.menu.opened {
+  right: 0;
+}
+
+.close {
+  position: absolute;
+  top:      5px;
+  right:    10px;
+  fill:     rgba(var(--black));
+  z-index:  1000;
+}

@@ -1,0 +1,80 @@
+<main class="main">
+  <div class="main-content">
+
+    <div class="cash-container">
+      <div class="cash">
+        <img src="assets/achievement-images/coin.svg" alt="coin image">
+        <p>{{ profile.money }}</p>
+      </div>
+    </div>
+
+    <div class="block power-container">
+      <h1 class="h1">Усиления</h1>
+      <div class="power__card">
+        <div class="power__card-image-container">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path fill="#90CAF9"
+                  d="M17.392 19.345a.75.75 0 0 0-1.031.248l-.486.794-1.146.41-.023-.052a.75.75 0 1 0-1.37.61l.98 2.2a.75.75 0 0 0 .636.443.752.752 0 0 0 .688-.356l2-3.266a.75.75 0 0 0-.248-1.031z"/>
+            <circle cx="12" cy="11.25" r="11.25" fill="#42A5F5"/>
+            <path fill="#4E342E"
+                  d="M8 11c-1.103 0-2-.897-2-2s.897-2 2-2 2 .897 2 2-.897 2-2 2zM16 11c-1.103 0-2-.897-2-2s.897-2 2-2 2 .897 2 2-.897 2-2 2zM5.75 7a.75.75 0 0 1 0-1.5.75.75 0 0 0 .75-.75.75.75 0 0 1 1.5 0A2.252 2.252 0 0 1 5.75 7zM18.25 7A2.252 2.252 0 0 1 16 4.75a.75.75 0 0 1 1.5 0c0 .414.336.75.75.75a.75.75 0 0 1 0 1.5z"/>
+            <path fill="#EEE"
+                  d="M16.625 17.75h-9.25C6.065 17.75 5 16.685 5 15.375S6.065 13 7.375 13h9.25C17.935 13 19 14.065 19 15.375s-1.065 2.375-2.375 2.375z"/>
+            <path fill="#90CAF9"
+                  d="M22.494 9.946c-.776-.886-2.298-.884-3.073.003a2.037 2.037 0 0 0-.484 1.617l1.3 9.535a.75.75 0 0 0 .743.649h.001a.75.75 0 0 0 .742-.652l1.259-9.54a2.04 2.04 0 0 0-.488-1.612zM1.437 11.01c-.338.398-.491.883-.424 1.293l1.219 11.029a.75.75 0 0 0 .739.668h.006a.75.75 0 0 0 .744-.654l1.411-10.989c.075-.446-.071-.929-.403-1.329-.804-.967-2.476-.977-3.292-.018z"/>
+          </svg>
+        </div>
+        <div class="power__card-content">
+          <div class="power__card-header-container">
+            <p class="power__card-header">Заморозка</p>
+            <p class="power__card-header power__card-count">{{ profile.freeze_count }}/{{ 3 }}</p>
+          </div>
+          <p class="power__card-about">Купленная заморозка поможет вам сохранить ударный режим даже если вы ничего в
+            этот день не сделали. Заморозка используется автоматически.</p>
+          <div class="power__card-button-container">
+            <button (click)="buy('freeze')" id="freeze-button" class="power__card-button">
+              Купить:
+              <img class="img" src="assets/achievement-images/coin.svg" alt="coin image">
+              {{this.freeze_cost}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="block avatars">
+      <h1 class="h1">Аватар</h1>
+      <div class="avatars__rollbar-container">
+        <div *ngIf="shop_avatars.length > 0" class="avatars__rollbar">
+          <div class="avatar-card" *ngFor="let avatar of shop_avatars; index as i;">
+            <img class="avatar-card__image" [src]="avatar.path" alt="avatar image">
+            <button (click)="buy('avatar', i)" [id]="'avatar-button'+i" class="avatar-card__button">
+              <img class="img" src="assets/achievement-images/coin.svg" alt="coin image">
+              {{ avatar.cost }}
+            </button>
+          </div>
+        </div>
+        <div *ngIf="shop_avatars.length == 0" class="card-void">
+          <p class="p">Упс, кажется вы купили все, что было в магазине</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="block bg">
+      <h1 class="h1">Фоны</h1>
+      <div *ngIf="shop_backgrounds.length > 0" class="bg__container">
+        <div class="bg__card" *ngFor="let bg of shop_backgrounds; index as i">
+          <div class="bg__card-img" [style]="'background-color: '+bg.color+';'"></div>
+          <button (click)="buy('bg', i)" [id]="'bg-button'+i" class="avatar-card__button">
+            <img class="img" src="assets/achievement-images/coin.svg" alt="coin image">
+            {{ bg.cost }}
+          </button>
+        </div>
+      </div>
+      <div *ngIf="shop_backgrounds.length == 0" class="card-void">
+        <p class="p">Упс, кажется вы купили все, что было в магазине</p>
+      </div>
+    </div>
+
+  </div>
+</main>

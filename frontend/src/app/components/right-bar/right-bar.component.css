@@ -1,0 +1,178 @@
+.menu {
+  width:               var(--right-bar-menu-width);
+  height:              100vh;
+  flex-direction:      column;
+  background:          rgba(var(--background-white));
+  transition-duration: .5s;
+  padding:             10px 0 0 20px;
+  z-index:             50;
+  position:            relative;
+  overflow:            hidden;
+}
+
+.menu.opened {
+  right: 0;
+}
+
+.menu-top {
+  display:         flex;
+  justify-content: space-between;
+  flex-direction:  row;
+  width:           100%;
+}
+
+.nav {
+  display:        flex;
+  margin-top:     40px;
+  flex-direction: column;
+}
+
+.link {
+  cursor:          pointer;
+  --padding-top:   15px;
+  --padding-right: 20px;
+  display:         flex;
+  flex-direction:  row;
+  justify-content: space-between;
+  align-items:     center;
+  align-content:   center;
+  font-size:       20px;
+  width:           100%;
+  padding:         var(--padding-top) 0 var(--padding-top) var(--padding-right);
+  background:      transparent;
+  border-radius:   10px;
+}
+
+.nav-background {
+  height:              50px;
+  width:               100%;
+  border-radius:       10px 0 0 10px;
+  --margin-right:      0px !important;
+  background:          rgba(var(--background-light));
+  opacity:             0;
+  transition-duration: .5s;
+  display:             none;
+  position:            absolute;
+  z-index:             -1;
+}
+
+.date-chose-container {
+  width:          100%;
+  position:       absolute;
+  left:           0;
+  bottom:         0;
+  display:        flex;
+  grid-row-gap:   20px;
+  flex-direction: column;
+  padding:        10px;
+}
+
+.data-chose {
+  display:         flex;
+  justify-content: space-around;
+  align-items:     center;
+  align-content:   center;
+  caret-color:     transparent !important;
+}
+
+.data-input {
+  font-family:   var(--ff-rubik);
+  border:        1px solid rgba(var(--gray));
+  padding:       5px 10px;
+  border-radius: 5px;
+}
+
+.logo {
+  cursor:          pointer;
+  flex-direction:  row;
+  font-size:       21px;
+  align-items:     center;
+  align-content:   center;
+  justify-content: center;
+  display:         flex;
+  grid-column-gap: 5px;
+  font-weight:     900;
+  font-family:     var(--ff-ubuntu);
+}
+
+.confirm-menu {
+  max-width:           var(--confirm-menu-width);
+  min-height:          var(--confirm-menu-height);
+  background:          rgba(var(--background-white));
+  display:             none;
+  flex-direction:      column;
+  justify-content:     center;
+  align-items:         center;
+  align-content:       center;
+  position:            absolute;
+  top:                 50%;
+  left:                50%;
+  transform:           translateX(-50%) translateY(-50%);
+  z-index:             1001;
+  padding:             10px;
+  border-radius:       16px;
+  opacity:             0;
+  transition-duration: .3s;
+}
+
+.confirm-menu__text {
+  font-size:   20px;
+  font-weight: 700;
+  font-family: var(--ff-dosis);
+  text-align:  center;
+}
+
+.confirm-menu__button-container {
+  margin-top:      20px;
+  display:         flex;
+  flex-direction:  row;
+  justify-content: space-between;
+  width:           100%;
+}
+
+.confirm-menu__button {
+  padding:             10px 20px;
+  border:              2px solid rgba(var(--border-gray));
+  border-bottom-width: 4px;
+  border-radius:       16px;
+  font-size:           20px;
+  transition-duration: .3s;
+}
+
+.confirm-menu__button:hover {
+  transform: scale(.95);
+  filter:    brightness(.8);
+}
+
+.btn-cancel {
+  color:      rgba(var(--border-gray));
+  background: transparent;
+}
+
+.btn-ok {
+  color:        rgba(var(--white));
+  background:   rgba(var(--blue));
+  border-color: rgba(var(--blue));
+}
+
+.show {
+  opacity: 1 !important;
+}
+
+#confirm-menu-background {
+  z-index:             1000;
+  position:            absolute;
+  top:                 0;
+  left:                0;
+  width:               100vw;
+  height:              100vh;
+  background:          rgba(var(--black), 30%);
+  display:             none;
+  opacity:             0;
+  transition-duration: .3s;
+}
+
+:host {
+  --confirm-menu-width:  400px;
+  --confirm-menu-height: 300px;
+}

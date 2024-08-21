@@ -1,0 +1,20 @@
+<main class="main">
+  <div class="main-content">
+
+    <table class="table">
+      <tr>
+        <td>Загрузить привычки</td>
+        <td><input id="file-container" type="file" (change)="upload_habits_file()"></td>
+      </tr>
+      <tr>
+        <td>Выбрать дату</td>
+        <td><input id="for-testing-date-input" type="date" (input)="set_date();"></td>
+      </tr>
+      <tr>
+        <td><input (click)="add_money(10000);" value="Добавить 10000 монет"></td>
+        <td><input (click)="add_levels(10000);" value="Добавить 10000 уровней"></td>
+      </tr>
+    </table>
+
+  </div>
+</main>

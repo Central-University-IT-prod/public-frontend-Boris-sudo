@@ -1,0 +1,145 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway");
+@import url("https://fonts.googleapis.com/css2?family=Goldman");
+@import url("https://fonts.googleapis.com/css2?family=Rubik");
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap');
+
+html, body {
+  width:           100vw;
+  min-height:      100vh;
+  scroll-behavior: smooth;
+  overflow-y:      hidden;
+  overflow-x:      hidden;
+  color:           rgba(var(--text-black));
+}
+
+body {
+  background-color: rgba(var(--background-light));
+  display:          flex;
+  flex-wrap:        wrap;
+  overflow-y:       scroll;
+  position:         relative;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+  width:   0;
+}
+
+* {
+  line-height:                 100%;
+  box-sizing:                  border-box;
+  margin:                      0;
+  padding:                     0;
+  caret-color:                 transparent;
+  font-family:                 var(--ff-raleway);
+  -webkit-tap-highlight-color: transparent;
+}
+
+input {
+  caret-color: rgba(var(--caret-white));
+}
+
+li {
+  list-style-type: none;
+  display:         inline-block;
+}
+
+input, button, select {
+  outline-offset: 0;
+  outline:        0;
+}
+
+img {
+  -moz-user-select:    none;
+  -webkit-user-select: none;
+  user-select:         none;
+  pointer-events:      none;
+}
+
+:root { /* fonts */
+  --ff-raleway: "Raleway", sans-serif;
+  --ff-rubik:   "Rubik", sans-serif;
+  --ff-ubuntu:  "Ubuntu", sans-serif;
+  --ff-dosis:   "Dosis", sans-serif;
+}
+
+:root { /* colors[white-theme] */
+  --green:       0, 128, 0;
+  --blue:        71, 114, 250;
+  --red:         243, 6, 6;
+  --black:       0, 0, 0;
+  --white:       255, 255, 255;
+  --gray:        153, 153, 153;
+  --gray2:       55, 70, 79;
+  --yellow:      255, 193, 7;
+  --yellow2:     255, 161, 0;
+
+  --light-gray:  231, 231, 231;
+  --light-gray2: 185, 185, 185;
+  --light-blue:  192, 202, 239;
+  --light-blue2: 112, 146, 253;
+  --light-ocean: 177, 212, 231;
+
+  --dark-gray:   85, 85, 85;
+  --dark-blue:   59, 90, 194;
+  --dark-ocean:  35, 69, 103;
+}
+
+:root {
+  --text-black:                var(--black);
+  --background-light:          var(--light-blue);
+  --background-white:          var(--white);
+  --background-menu:           var(--light-blue);
+  --border-gray:               var(--gray2);
+  --svg-blue-light:            var(--light-ocean);
+  --svg-blue-dark:             var(--dark-ocean);
+  --caret-white:               var(--white);
+  --caret-black:               var(--black);
+  --dropdorw-button-gray:      var(--gray);
+  --dropdorw-button-blue:      var(--blue);
+  --dropdorw-button-white:     var(--white);
+  --dropdorw-button-red:       var(--red);
+  --date-frequency-item-lgray: var(--light-gray);
+  --date-frequency-item-dgray: var(--dark-gray);
+  --date-frequency-item-lblue: var(--light-blue);
+  --date-frequency-item-dblue: var(--blue);
+  --login-dblue:               var(--dark-blue);
+}
+
+:root { /* sizes */
+  --max-window-width:                    1440px;
+  --top-bar-height:                      70px;
+  --add-habit-input-width:               200px;
+  --add-habit-input-height:              30px;
+  --add-habit-dropdown-menu-width:       300px;
+  --add-habit-menu-width:                400px;
+  --add-habit-menu-height:               450px;
+  --login-menu-width:                    400px;
+  --login-menu-height:                   300px;
+  --habits-content-width:                100%;
+  --habits-content-height:               500px;
+  --habits-content-svg-alarm-clock-size: 130px;
+  --habits-content-svg-schedule-size:    70px;
+  --habits-content-svg-circle-size:      150px;
+  --right-bar-menu-width:                300px;
+  --habit-img-scale:                     40px;
+  --habit-content-card-min-width:        300px;
+  --habit-content-card-height:           70px;
+  --habit-content-card-height-opened:    200px;
+  --login-form-max-width:                350px;
+  --login-title-after-size:              16px;
+  --login-title-before-size:             18px;
+  --main-rollbar-height:                 80px;
+  --main-head-block-height:              600px;
+  --blob-width:                          1000px;
+  --minimum-right-bar-show-width:        600px;
+  --habit-delete-menu-width:             400px;
+  --habit-delete-menu-height:            400px;
+  --delete-habit-button-width:           100%;
+  --delete-habit-button-height:          60px;
+}
+
+body {
+  --edit-image-color:  #ffffff;
+  --profile-top-color: #0000f4;
+}

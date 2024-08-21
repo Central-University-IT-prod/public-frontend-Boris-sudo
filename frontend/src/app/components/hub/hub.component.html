@@ -1,0 +1,64 @@
+<main class="main">
+  <div class="main-content">
+
+    <div class="block">
+      <h1 class="block__header">Рейтинг участников</h1>
+      <div class="rating__container">
+        <div class="place-container">
+          <div class="rating-profile-img-container">
+            <img class="img" [src]="tops[1].path" alt="top player image">
+          </div>
+          <div class="place-content place2">
+            <p class="p">2nd</p>
+          </div>
+        </div>
+        <div class="place-container">
+          <div class="rating-profile-img-container">
+            <img class="img" [src]="tops[0].path" alt="top player image">
+          </div>
+          <div class="place-content place1">
+            <p class="p">1st</p>
+          </div>
+        </div>
+        <div class="place-container">
+          <div class="rating-profile-img-container">
+            <img class="img" [src]="tops[2].path" alt="top player image">
+          </div>
+          <div class="place-content place3">
+            <p class="p">3rd</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h1 class="block__header">Найти друга</h1>
+      <div class="profile__container">
+        <div *ngFor="let friend of friend_profiles" class="profile__card">
+          <div [style]="'background: '+friend.color+';'" class="profile__image">
+            <img class="img" [src]="friend.path" alt="friend image">
+          </div>
+
+          <div class="buttons-container">
+            <button class="button add-button">
+              добавить
+              <svg class="svg" viewBox="0 0 151 151" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_633_2768)">
+                  <path d="M141.987 87.7704C136.842 82.5794 130.042 79.4181 122.825 78.7503C129.055 73.1448 132.986 65.0523 132.986 56.0125C132.986 39.1005 119.282 25.396 102.366 25.396C86.2111 25.396 72.9835 37.9097 71.8354 53.7689C86.2078 59.9863 96.2938 74.3093 96.2938 90.9383C96.2938 97.011 94.9121 102.945 92.3429 108.331C96.0437 110.265 99.4551 112.765 102.429 115.765C110.054 123.443 114.387 134.059 114.304 144.881L114.298 145.102L114.291 145.289L114.021 150.411H150.697L151 109.85C151.063 101.577 147.822 93.6424 141.987 87.7704Z" fill="white"/>
+                  <path d="M76.2665 113.683C82.4938 108.08 86.438 99.9847 86.438 90.9448C86.438 74.0296 72.7269 60.3218 55.815 60.3218C38.8998 60.3218 25.1919 74.0296 25.1919 90.9448C25.1919 99.9682 29.1197 108.057 35.3371 113.663C19.4154 114.897 6.83917 128.081 6.72403 144.316L6.42139 150.411H52.9793H104.143L104.445 144.773C104.505 136.503 101.261 128.568 95.4286 122.696C90.277 117.502 83.4807 114.35 76.2665 113.683Z" fill="white"/>
+                  <path d="M19.7509 37.4161V48.7916C19.7509 53.5024 23.58 57.3282 28.294 57.3282C33.0146 57.3282 36.8371 53.5024 36.8371 48.7916V37.4161H48.1995C52.9135 37.4161 56.7393 33.587 56.7393 28.873C56.7393 24.1623 52.9135 20.3331 48.1995 20.3331H36.8371V9.12542C36.8371 4.4114 33.0146 0.588867 28.294 0.588867C23.58 0.588867 19.7509 4.4114 19.7509 9.12542V20.3299H8.53985C3.81925 20.3299 0 24.159 0 28.8697C0 33.5837 3.81925 37.4128 8.53985 37.4128L19.7509 37.4161Z" fill="white"/>
+                </g>
+                <defs>
+                  <clipPath id="clip0_633_2768">
+                    <rect width="151" height="151" fill="white"/>
+                  </clipPath>
+                </defs>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>

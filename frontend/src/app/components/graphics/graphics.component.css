@@ -1,0 +1,53 @@
+.main {
+  width:           100%;
+  display:         flex;
+  position:        relative;
+  justify-content: center;
+}
+
+.main-content {
+  width:     100%;
+  max-width: var(--max-main-width);
+}
+
+.habit-link__container {
+  width:          100%;
+  display:        flex;
+  flex-direction: row;
+  gap:            20px;
+  flex-wrap:      wrap;
+  margin-top:     30px;
+  margin-bottom:  30px;
+}
+
+.habit-link__card {
+  --height:            var(--habit-content-card-height);
+  --height-opened:     var(--habit-content-card-height-opened);
+  min-width:           min(100%, var(--habit-content-card-min-width));
+  width:               fit-content;
+  height:              var(--height);
+  display:             flex;
+  justify-content:     center;
+  align-items:         center;
+  align-content:       center;
+  border-radius:       15px;
+  border:              1px solid rgba(var(--border-gray));
+  background:          rgba(var(--background-white));
+  cursor:              pointer;
+  overflow:            hidden;
+  position:            relative;
+  transition-duration: 1s;
+  padding:             0 20px 0;
+}
+
+.chosen-habit {
+  background: rgba(var(--blue));
+}
+
+.habit-link__title {
+  font-size: 20px;
+}
+
+:host {
+  --max-main-width: 1000px;
+}

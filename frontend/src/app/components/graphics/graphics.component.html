@@ -1,0 +1,15 @@
+<main class="main">
+  <div class="main-content">
+
+    <div class="graphic">
+      <canvas id="all_chart">{{chart}}</canvas>
+    </div>
+
+    <div class="habit-link__container">
+      <div class="habit-link__card" (click)="choose_habit(habit)" [class.chosen-habit]="chosen_habit == habit" *ngFor="let habit of all_habits">
+        <p class="habit-link__title">{{habit.title}}</p>
+      </div>
+    </div>
+
+  </div>
+</main>

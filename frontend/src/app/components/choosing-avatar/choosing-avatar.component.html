@@ -1,0 +1,47 @@
+<main class="main">
+  <div class="max-width">
+
+    <div (click)="router.navigate('profile');" class="navigate-back">
+      <svg viewBox="0 0 488 488" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M44 244H444M44 244L210.667 77.3334M44 244L210.667 410.667" stroke-width="66.6667" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+
+      <p>Изменить автар</p>
+    </div>
+
+    <div class="content">
+      <div [style]="'background:'+chosen_background.color+';'" class="pre-view">
+        <img [src]="chosen_avatar.path" alt="chosen avatar image">
+        <div [style]="'border-color:'+chosen_background.edit_color+';'" class="image-edit-block">
+          <svg [style]="'fill:'+chosen_background.edit_color+';'" class="image-edit" xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+               viewBox="0 0 24 24">
+            <path
+              d="M14.257 4.793 1.555 17.496a.505.505 0 0 0-.132.232L.015 23.379A.503.503 0 0 0 .5 24c.04 0 .081-.005.121-.015l5.651-1.408a.5.5 0 0 0 .232-.132L19.207 9.743l-4.95-4.95zM22.354 3.061 20.94 1.647c-.945-.945-2.592-.944-3.536 0l-1.732 1.732 4.95 4.95 1.732-1.732c.472-.472.732-1.1.732-1.768 0-.668-.26-1.296-.732-1.768z"/>
+          </svg>
+        </div>
+      </div>
+      <div>
+        <div class="nav-bar">
+          <div [class.active-link]="current_page=='Аватар'" (click)="current_page = 'Аватар'" class="card"><p>Аватар</p></div>
+          <div [class.active-link]="current_page=='Фон'" (click)="current_page = 'Фон'" class="card"><p>Фон</p></div>
+        </div>
+        <div class="editor-container">
+          <div class="editor-content">
+            <div *ngIf="current_page == 'Аватар'" class="avatars images-container">
+              <div (click)="chosen_avatar = avatar" [class.chosen-card]="chosen_avatar == avatar" class="avatar-card" *ngFor="let avatar of this.available_avatars">
+                <img [src]="avatar.path" alt="available avatar image">
+              </div>
+            </div>
+            <div *ngIf="current_page == 'Фон'" class="backgrounds images-container">
+              <div (click)="chosen_background = background" [class.chosen-card]="chosen_background == background" class="background-card" *ngFor="let background of this.available_backgrounds" [style]="'background: '+background.color+' !important;'"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="buttons">
+      <div (click)="save_avatar()" class="button save-button">Сохранить</div>
+    </div>
+
+  </div>
+</main>

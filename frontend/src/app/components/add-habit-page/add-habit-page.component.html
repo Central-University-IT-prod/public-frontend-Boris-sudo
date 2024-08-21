@@ -1,0 +1,295 @@
+<main class="main">
+  <div class="rollbar" id="rollbar">
+    <div id="rollbar-block" class="rollbar__block">
+      <div [id]="'date-card'+date.date.toJSON().split('T')[0]" (click)="setDate(date)"
+           [class.chosen-date]="date.date.toJSON().split('T')[0] == watching_date" class="date-card"
+           *ngFor="let date of near_dates">
+        <p class="date">{{ date.date.getDate() }}</p>
+        <p class="month">{{ week_days[date.date.getDay()] }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="top">
+    <button (click)="navigateBack()" class="cta">
+      <svg width="15px" height="10px" viewBox="0 0 13 10">
+        <path d="M1,5 L11,5"></path>
+        <polyline points="8 1 12 5 8 9"></polyline>
+      </svg>
+      <span>Back</span>
+    </button>
+    <button (click)="openMenu('add-habit-menu')" class="cta cta-reverse">
+      <span>Add habit</span>
+    </button>
+  </div>
+
+  <div class="today-tasks block">
+    <p class="header">Good {{ get_time() }}, {{ user }}</p>
+    <div class="block-item flex space-between flex-row">
+      <p class="sub-header">Today tasks</p>
+      <p class="sub-header date">{{ get_date() }}</p>
+    </div>
+
+    <div style="min-height: var(--habits-content-height)" class="habits-content">
+      <div class="habits-content__void" *ngIf="all_habits.length == 0">
+        <div class="habits-content__svg-images">
+          <svg class="svg circle" viewBox="0 0 238 238">
+            <circle cx="119" cy="119" r="119"/>
+          </svg>
+          <svg class="svg star" viewBox="0 0 27 25">
+            <path
+              d="M13.5 0L16.5309 9.32827H26.3393L18.4042 15.0935L21.4351 24.4217L13.5 18.6565L5.5649 24.4217L8.59584 15.0935L0.660737 9.32827H10.4691L13.5 0Z"/>
+          </svg>
+          <svg class="svg star" viewBox="0 0 27 25">
+            <path
+              d="M13.5 0L16.5309 9.32827H26.3393L18.4042 15.0935L21.4351 24.4217L13.5 18.6565L5.5649 24.4217L8.59584 15.0935L0.660737 9.32827H10.4691L13.5 0Z"/>
+          </svg>
+          <svg class="svg star" viewBox="0 0 27 25">
+            <path
+              d="M13.5 0L16.5309 9.32827H26.3393L18.4042 15.0935L21.4351 24.4217L13.5 18.6565L5.5649 24.4217L8.59584 15.0935L0.660737 9.32827H10.4691L13.5 0Z"/>
+          </svg>
+          <svg class="schedule svg" viewBox="0 0 24 24">
+            <path fill="#eceff1"
+                  d="M23 8.04H1a1 1 0 0 0-1 1V21c0 1.654 1.346 3 3 3h18c1.654 0 3-1.346 3-3V9.04a1 1 0 0 0-1-1z"/>
+            <path fill="#2196f3" d="M21 3H3a3 3 0 0 0-3 3v3.04h24V6a3 3 0 0 0-3-3z"/>
+            <path fill="#1976d2"
+                  d="M6 0H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1zM19 0h-1a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1z"/>
+            <g fill="#2196f3">
+              <path
+                d="M6.25 11h-2.5a.75.75 0 0 0-.75.75v2.5c0 .414.336.75.75.75h2.5a.75.75 0 0 0 .75-.75v-2.5a.75.75 0 0 0-.75-.75zM6.25 17h-2.5a.75.75 0 0 0-.75.75v2.5c0 .414.336.75.75.75h2.5a.75.75 0 0 0 .75-.75v-2.5a.75.75 0 0 0-.75-.75zM13.25 11h-2.5a.75.75 0 0 0-.75.75v2.5c0 .414.336.75.75.75h2.5a.75.75 0 0 0 .75-.75v-2.5a.75.75 0 0 0-.75-.75z"/>
+            </g>
+            <path fill="#90caf9"
+                  d="M13.25 17h-2.5a.75.75 0 0 0-.75.75v2.5c0 .414.336.75.75.75h2.5a.75.75 0 0 0 .75-.75v-2.5a.75.75 0 0 0-.75-.75z"/>
+            <path fill="#2196f3"
+                  d="M20.25 11h-2.5a.75.75 0 0 0-.75.75v2.5c0 .414.336.75.75.75h2.5a.75.75 0 0 0 .75-.75v-2.5a.75.75 0 0 0-.75-.75z"/>
+          </svg>
+          <svg class="alarm-clock svg" viewBox="0 0 1024 1024">
+            <path
+              d="M512 896c-223.5 0-405.3-181.8-405.3-405.3S288.5 85.3 512 85.3s405.3 181.8 405.3 405.3S735.5 896 512 896z m0-725.3c-176.4 0-320 143.5-320 320s143.6 320 320 320 320-143.5 320-320-143.6-320-320-320z"
+              fill="#3688FF"/>
+            <path
+              d="M922.6 249.6c-13.7 0-27.1-6.6-35.4-18.8-15.3-22.6-32.8-43.9-52.1-63.2-19.3-19.3-40.6-36.9-63.2-52.1-19.5-13.2-24.6-39.7-11.5-59.2 13.2-19.5 39.7-24.6 59.2-11.5 27.1 18.3 52.6 39.4 75.7 62.5s44.2 48.6 62.5 75.7c13.2 19.5 8.1 46.1-11.5 59.2-7.2 5-15.5 7.4-23.7 7.4zM101.4 249.6c-8.2 0-16.5-2.4-23.8-7.3-19.5-13.2-24.7-39.7-11.5-59.2 18.3-27.1 39.4-52.6 62.5-75.7s48.6-44.1 75.7-62.5c19.5-13.2 46.1-8 59.3 11.5 13.2 19.5 8.1 46-11.5 59.2-22.6 15.3-43.9 32.8-63.2 52.1-19.3 19.3-36.8 40.5-52.1 63.2-8.2 12.1-21.7 18.7-35.4 18.7zM138.6 970.7c-8.6 0-17.3-2.6-24.8-7.9-19.2-13.7-23.6-40.4-9.9-59.5l53.3-74.7c13.7-19.2 40.3-23.6 59.5-9.9 19.2 13.7 23.6 40.4 9.9 59.5l-53.3 74.7c-8.2 11.6-21.4 17.8-34.7 17.8zM885.4 970.7c-13.3 0-26.4-6.2-34.8-17.9l-53.3-74.7c-13.7-19.2-9.3-45.8 9.9-59.5 19.2-13.7 45.8-9.2 59.5 9.9l53.3 74.7c13.7 19.2 9.3 45.8-9.9 59.5-7.5 5.4-16.2 8-24.7 8zM512 554.7c-7.2 0-14.5-1.8-21-5.5-13.4-7.6-21.6-21.8-21.6-37.1V384c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v52.6l42.1-25.2c20.2-12.1 46.4-5.6 58.5 14.6 12.1 20.2 5.6 46.4-14.6 58.5l-106.7 64c-6.9 4.1-14.5 6.2-22.1 6.2z"
+              fill="#5F6379"/>
+          </svg>
+        </div>
+
+        <p>Alas, we have nothing to keep track of yet.</p>
+      </div>
+      <div [id]="'habit-container'+habit.id" class="habits-content__habit" *ngFor="let habit of all_habits">
+        <div class="habits-content__habit-content flex flex-row space-between">
+          <div class="flex flex-row habit-content__habit-div">
+            <div class="habits-content__habit-img">
+              <svg width="40" height="40" class="svg" xmlns="http://www.w3.org/2000/svg">
+                <circle class="circle stroke-gray" r="19" cx="20px" cy="20px" stroke-linecap="round"></circle>
+              </svg>
+              <svg width="40" height="40" class="svg" xmlns="http://www.w3.org/2000/svg">
+                <circle [id]="'habit-circle'+habit.id" class="circle" r="19" cx="20px" cy="20px"
+                        stroke-linecap="round"></circle>
+              </svg>
+              <svg [id]="'habit-tick'+habit.id" class="tick" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path
+                  d="M9.125 19.125a.997.997 0 0 1-.707-.293l-6.125-6.125a.999.999 0 1 1 1.414-1.414l5.418 5.418L20.668 5.168a.999.999 0 1 1 1.414 1.414l-12.25 12.25a.997.997 0 0 1-.707.293z"/>
+              </svg>
+            </div>
+            <div class="habits-content__habit-info">
+              <p class="habits-content__habit-header">{{ habit.title }}</p>
+              <p class="habits-content__habit-text">{{ habit.doneValue }} / {{ habit.targetValue }}</p>
+            </div>
+          </div>
+          <div class="habit-content__habit-edit" (click)="openHabitMenu(habit)">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M12.7431 12.7083V17.257C12.7431 17.6673 12.4105 18 12.0002 18C11.59 18 11.2574 17.6673 11.2574 17.257V12.7083H6.7272C6.34452 12.6687 6.05371 12.3461 6.05371 11.9613C6.05371 11.5765 6.34452 11.2539 6.7272 11.2143H11.2494V6.67365C11.289 6.29088 11.6115 6 11.9963 6C12.381 6 12.7035 6.29088 12.7431 6.67365V11.2143H17.2733C17.656 11.2539 17.9468 11.5765 17.9468 11.9613C17.9468 12.3461 17.656 12.6687 17.2733 12.7083H12.7431Z"
+                    fill="#040415"/>
+            </svg>
+          </div>
+        </div>
+        <div *ngIf="opened_habit_id == habit.id" class="opened-habit-content">
+          <div class="habit__input-container flex-row" *ngIf="habit.type == 'boolean'">
+            <input [checked]="habit.doneValue == 1" class="habit__input-checkbox" type="checkbox"
+                   [id]="'habit-checkbox'+habit.id" placeholder="Отметить выполненным">
+            <p>Отметить выполненным</p>
+          </div>
+          <div class="habit__input-container flex-col" *ngIf="habit.type == 'numeric'">
+            <p>Прогресс выполнения</p>
+            <input [value]="habit.doneValue" class="habit__input-number" type="number" [max]="habit.targetValue"
+                   name="habit-input-number" [id]="'habit-input'+habit.id">
+          </div>
+          <div class="dropdown-menu__submit">
+            <button class="button delete-button" type="button" (click)="openDeleteHabitMenu(habit)">Delete</button>
+            <button class="button ok-button" type="button" (click)="submitHabitProgress(habit)">Ok</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="today-tasks block" *ngIf="deleted_habits.length > 0">
+    <p class="sub-header">Deleted tasks</p>
+
+    <div class="habits-content">
+      <div [id]="'habit-container'+habit.id" class="habits-content__habit" *ngFor="let habit of deleted_habits">
+        <div class="habits-content__habit-content mini-habit-content flex flex-row space-between">
+          <div class="flex flex-row habit-content__habit-div">
+            <div class="habits-content__habit-img">
+              <svg width="40" height="40" class="svg" xmlns="http://www.w3.org/2000/svg">
+                <circle class="circle stroke-gray" r="19" cx="20px" cy="20px" stroke-linecap="round"></circle>
+              </svg>
+              <svg width="40" height="40" class="svg" xmlns="http://www.w3.org/2000/svg">
+                <circle [id]="'habit-circle'+habit.id" class="circle" r="19" cx="20px" cy="20px"
+                        stroke-linecap="round"></circle>
+              </svg>
+              <svg [id]="'habit-tick'+habit.id" class="tick" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path
+                  d="M9.125 19.125a.997.997 0 0 1-.707-.293l-6.125-6.125a.999.999 0 1 1 1.414-1.414l5.418 5.418L20.668 5.168a.999.999 0 1 1 1.414 1.414l-12.25 12.25a.997.997 0 0 1-.707.293z"/>
+              </svg>
+            </div>
+            <div class="habits-content__habit-info">
+              <p class="habits-content__habit-header">{{ habit.title }}</p>
+              <p class="habits-content__habit-text">{{ habit.doneValue }} / {{ habit.targetValue }}</p>
+            </div>
+          </div>
+          <div class="habit-content__habit-edit" (click)="openHabitMenu(habit)">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M12.7431 12.7083V17.257C12.7431 17.6673 12.4105 18 12.0002 18C11.59 18 11.2574 17.6673 11.2574 17.257V12.7083H6.7272C6.34452 12.6687 6.05371 12.3461 6.05371 11.9613C6.05371 11.5765 6.34452 11.2539 6.7272 11.2143H11.2494V6.67365C11.289 6.29088 11.6115 6 11.9963 6C12.381 6 12.7035 6.29088 12.7431 6.67365V11.2143H17.2733C17.656 11.2539 17.9468 11.5765 17.9468 11.9613C17.9468 12.3461 17.656 12.6687 17.2733 12.7083H12.7431Z"
+                    fill="#040415"/>
+            </svg>
+          </div>
+        </div>
+        <div *ngIf="opened_habit_id == habit.id" class="opened-habit-content">
+          <div class="dropdown-menu__submit">
+            <button class="button delete-button" type="button" (click)="deleting_habit=habit; deleteHabit(true)">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="bg" class="black-bg"></div>
+  <div id="add-habit-menu" class="add-habit-menu">
+    <div class="top top-habit-menu">
+      <p>Add habit and control it</p>
+      <div style="cursor: pointer" (click)="closeMenu('add-habit-menu');">
+        <svg width="20" height="20"
+             viewBox="0 0 24 24">
+          <path
+            d="m13.414 12 6.01-6.01a.999.999 0 1 0-1.414-1.414L12 10.586l-6.01-6.01A.999.999 0 1 0 4.576 5.99l6.01 6.01-6.01 6.01a.999.999 0 1 0 1.414 1.414l6.01-6.01 6.01 6.01a.997.997 0 0 0 1.414 0 .999.999 0 0 0 0-1.414L13.414 12z"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="scroll-div">
+      <div class="add-habit-select">
+        <select (change)="setSelectedCollection()" id="first-select">
+          <option value="">my own</option>
+          <option [value]="habit_collection.title" *ngFor="let habit_collection of ready_habits">{{habit_collection.title}}</option>
+        </select>
+        <select id="second-select" *ngIf="selected_collection.length > 0">
+          <option>...</option>
+          <option [value]="habit.title" *ngFor="let habit of selected_collection">{{habit.title}}</option>
+        </select>
+        <button (click)="selectNewHabit()" *ngIf="selected_collection.length > 0" class="select-button">Generate</button>
+      </div>
+      <form class="habit-form">
+        <table class="add-habit-table">
+          <tr>
+            <td class="table-tr-name">Title</td>
+            <td class="table-tr-input"><input class="input" [(ngModel)]="new_habit.title" name="habit-title"
+                                              autocomplete="habit-title" placeholder="Title of our habit"></td>
+          </tr>
+
+          <tr>
+            <td class="table-tr-name">Frequency</td>
+            <td class="table-tr-input">
+              <div class="input" (click)="openMenu('habit-frequency-dropdown-menu');">
+                <p>{{ new_habit.period }}</p>
+              </div>
+              <div id="habit-frequency-dropdown-menu" class="dropdown-menu">
+                <div class="dropdown-menu__top item">
+                  <div (click)="frequency_date_type_chose = 'daily'"
+                       [class.active]="frequency_date_type_chose == 'daily'" class="date-frequency-item">Daily
+                  </div>
+                  <div (click)="frequency_date_type_chose = 'weekly'"
+                       [class.active]="frequency_date_type_chose == 'weekly'" class="date-frequency-item">Weekly
+                  </div>
+                  <div (click)="frequency_date_type_chose = 'monthly'"
+                       [class.active]="frequency_date_type_chose == 'monthly'" class="date-frequency-item">Monthly
+                  </div>
+                </div>
+                <div class="dropdown-menu__submit item">
+                  <button (click)="closeMenu('habit-frequency-dropdown-menu')" type="button"
+                          class="button cancel-button">Cancel
+                  </button>
+                  <button
+                    (click)="changeNewHabitValue('period', frequency_date_type_chose, 'habit-frequency-dropdown-menu')"
+                    type="button" class="button ok-button">Ok
+                  </button>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="table-tr-name">Goal</td>
+            <td class="table-tr-input">
+              <div class="input" (click)="openMenu('habit-goal-dropdown-menu')">
+                <p>{{ getGoalValue() }}</p>
+              </div>
+              <div id="habit-goal-dropdown-menu" class="dropdown-menu">
+                <div class="dropdown-menu__top item">
+                  <div (click)="goal_type_chose = 'boolean'"
+                       [class.active]="goal_type_chose == 'boolean'" class="date-frequency-item">Boolean
+                  </div>
+                  <div (click)="goal_type_chose = 'numeric'"
+                       [class.active]="goal_type_chose == 'numeric'" class="date-frequency-item">Numeric
+                  </div>
+                </div>
+                <input name="goal-numerial-target-value" [(ngModel)]="target_value" *ngIf="goal_type_chose == 'numeric'"
+                       type="text" class="goal-input">
+                <div class="dropdown-menu__submit item">
+                  <button (click)="closeMenu('habit-goal-dropdown-menu')" type="button"
+                          class="button cancel-button">Cancel
+                  </button>
+                  <button
+                    (click)="changeNewHabitValue('type', goal_type_chose, 'habit-goal-dropdown-menu', target_value)"
+                    type="button" class="button ok-button">Ok
+                  </button>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="table-tr-name">Start date</td>
+            <td class="table-tr-input">
+              <input type="date" class="input" [(ngModel)]="new_habit.addDate" autocomplete="add-habit-date"
+                     name="addDate">
+            </td>
+          </tr>
+        </table>
+
+        <div class="dropdown-menu__submit mt-3">
+          <button (click)="closeMenu('add-habit-menu')" class="button cancel-button">Cancel</button>
+          <button (click)="addNewHabit()" class="button ok-button">Ok</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="delete-habit-menu" class="delete-habit-menu">
+    <p class="header">Удаление привычки</p>
+    <label class="flex flex-row align-center grid-col-gap-10">
+      <input (change)="checkDeleted('delete-prev')" checked type="checkbox" id="delete-prev">
+      <p>Это и последующие отслеживания</p>
+    </label>
+    <label class="flex flex-row align-center grid-col-gap-10">
+      <input (change)="checkDeleted('delete-all')" type="checkbox" id="delete-all">
+      <p>Все отслеживания</p>
+    </label>
+    <div class="dropdown-menu__submit">
+      <button (click)="closeMenu('delete-habit-menu'); this.closeMenu('bg')" class="button cancel-button">Cancel</button>
+      <button (click)="deleteHabit()" class="button delete-button">Delete</button>
+    </div>
+  </div>
+</main>
